@@ -13,8 +13,14 @@ export default function Home() {
         <ScrollToTop />
         <SiteHeader />
         <PetitionHero />
-        <PetitionLetter />
-        <SignPetitionForm />
+
+        <div className="mx-auto max-w-4xl px-4 pb-10 pt-8 sm:px-6 sm:pt-12">
+          <div className="border border-foreground bg-background">
+            <PetitionLetter />
+            <SignPetitionForm />
+          </div>
+        </div>
+
         <SiteFooter />
       </div>
     </SignatureCountProvider>

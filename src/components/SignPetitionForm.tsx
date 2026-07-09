@@ -1,16 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import {
-  Briefcase,
-  CheckCircle,
-  Handshake,
-  Lock,
-  MapPin,
-  Pencil,
-  Phone,
-  User,
-} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { content, type Content } from "@/i18n/translations";
 import { useSignatureCount } from "@/context/SignatureCountProvider";
 
@@ -43,6 +34,39 @@ function translateError(
       return errors.generic;
   }
 }
+
+const fields = [
+  {
+    key: "name" as const,
+    label: content.form.name,
+    type: "text",
+    placeholder: content.form.namePlaceholder,
+    autoComplete: "name",
+  },
+  {
+    key: "profession" as const,
+    label: content.form.profession,
+    type: "text",
+    placeholder: content.form.professionPlaceholder,
+    autoComplete: "organization-title",
+  },
+  {
+    key: "mobile" as const,
+    label: content.form.mobile,
+    type: "tel",
+    placeholder: content.form.mobilePlaceholder,
+    autoComplete: "tel",
+    pattern: "[0-9]{10}",
+    title: content.form.mobileTitle,
+  },
+  {
+    key: "location" as const,
+    label: content.form.location,
+    type: "text",
+    placeholder: content.form.locationPlaceholder,
+    autoComplete: "address-level2",
+  },
+];
 
 export default function SignPetitionForm() {
   const { refresh } = useSignatureCount();
@@ -83,132 +107,96 @@ export default function SignPetitionForm() {
 
   if (status === "success") {
     return (
-      <section id="sign" className="bg-surface">
-        <div className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6">
-          <CheckCircle className="mx-auto h-14 w-14 text-foreground" aria-hidden />
-          <h2 className="mt-4 text-2xl font-bold text-foreground">
-            {content.form.successTitle}
-          </h2>
-          <p className="mt-2 text-muted">{content.form.successMessage}</p>
-          <button
-            type="button"
-            onClick={() => setStatus("idle")}
-            className="mt-6 text-sm font-semibold text-foreground underline hover:no-underline"
-          >
-            {content.form.signAgain}
-          </button>
-        </div>
+      <section id="sign" className="border-t border-foreground p-10 text-center">
+        <CheckCircle
+          className="mx-auto h-12 w-12 text-foreground"
+          aria-hidden
+        />
+        <h2 className="mt-4 text-xl font-bold uppercase tracking-wide text-foreground">
+          {content.form.successTitle}
+        </h2>
+        <p className="mt-2 text-sm text-muted">{content.form.successMessage}</p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-6 bg-foreground px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:opacity-90"
+        >
+          {content.form.signAgain}
+        </button>
       </section>
     );
   }
 
-  const fields = [
-    {
-      key: "name" as const,
-      label: content.form.name,
-      icon: User,
-      type: "text",
-      placeholder: content.form.namePlaceholder,
-      autoComplete: "name",
-    },
-    {
-      key: "profession" as const,
-      label: content.form.profession,
-      icon: Briefcase,
-      type: "text",
-      placeholder: content.form.professionPlaceholder,
-      autoComplete: "organization-title",
-    },
-    {
-      key: "mobile" as const,
-      label: content.form.mobile,
-      icon: Phone,
-      type: "tel",
-      placeholder: content.form.mobilePlaceholder,
-      autoComplete: "tel",
-      pattern: "[0-9]{10}",
-      title: content.form.mobileTitle,
-    },
-    {
-      key: "location" as const,
-      label: content.form.location,
-      icon: MapPin,
-      type: "text",
-      placeholder: content.form.locationPlaceholder,
-      autoComplete: "address-level2",
-    },
-  ];
-
   return (
-    <section id="sign" className="bg-surface">
+    <section id="sign">
       <form onSubmit={handleSubmit} noValidate>
-        <div className="border-b border-border bg-surface-muted px-4 py-4 sm:px-6">
-          <div className="mx-auto flex max-w-4xl items-center gap-3">
-            <Handshake className="h-6 w-6 shrink-0 text-foreground" aria-hidden />
-            <p className="text-base font-bold text-foreground sm:text-lg">
-              {content.form.support}
-            </p>
-          </div>
+        <div className="border-t border-b border-foreground bg-foreground px-5 py-5 text-center text-white sm:px-6 sm:py-6">
+          <h2 className="text-lg font-bold tracking-tight sm:text-xl">
+            {content.form.support}
+          </h2>
+          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/80">
+            {content.form.signatoryDetails}
+          </p>
         </div>
 
-        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-10">
-          <div className="mb-6 flex items-center gap-2">
-            <User className="h-5 w-5 text-foreground" aria-hidden />
-            <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
-              {content.form.signatoryDetails}
-            </h2>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+          {fields.map((field, index) => (
+            <div
+              key={field.key}
+              className={`border-foreground p-5 sm:p-6 ${
+                index < 2 ? "border-b" : ""
+              } ${index % 2 === 0 ? "sm:border-r" : ""} ${
+                index >= 2 ? "sm:border-b-0" : "sm:border-b"
+              }`}
+            >
+              <label
+                htmlFor={field.key}
+                className="block text-[11px] font-bold uppercase tracking-[0.15em] text-foreground"
+              >
+                {field.label}
+              </label>
+              <input
+                id={field.key}
+                name={field.key}
+                type={field.type}
+                required
+                autoComplete={field.autoComplete}
+                pattern={field.pattern}
+                title={field.title}
+                value={form[field.key]}
+                onChange={(e) =>
+                  setForm({ ...form, [field.key]: e.target.value })
+                }
+                className="mt-3 w-full border-0 border-b border-foreground bg-transparent py-2 text-sm text-foreground placeholder:text-neutral-400 focus:border-foreground focus:outline-none focus:ring-0"
+                placeholder={field.placeholder}
+              />
+            </div>
+          ))}
+        </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {fields.map((field) => (
-              <div key={field.key}>
-                <label
-                  htmlFor={field.key}
-                  className="mb-1.5 flex items-center gap-2 text-sm font-semibold text-foreground"
-                >
-                  <field.icon className="h-4 w-4 text-muted" aria-hidden />
-                  {field.label}
-                </label>
-                <input
-                  id={field.key}
-                  name={field.key}
-                  type={field.type}
-                  required
-                  autoComplete={field.autoComplete}
-                  pattern={field.pattern}
-                  title={field.title}
-                  value={form[field.key]}
-                  onChange={(e) =>
-                    setForm({ ...form, [field.key]: e.target.value })
-                  }
-                  className="w-full rounded-lg border border-border bg-surface-muted px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-foreground focus:outline-none focus:ring-2 focus:ring-foreground/10"
-                  placeholder={field.placeholder}
-                />
-              </div>
-            ))}
-          </div>
+        {status === "error" && (
+          <p
+            className="border-t border-foreground px-5 py-3 text-sm font-semibold text-foreground sm:px-6"
+            role="alert"
+          >
+            {errorMessage}
+          </p>
+        )}
 
-          {status === "error" && (
-            <p className="mt-4 text-sm font-semibold text-foreground" role="alert">
-              {errorMessage}
-            </p>
-          )}
-
+        <div className="flex justify-center border-t border-foreground p-5 sm:p-6">
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:opacity-90 disabled:opacity-60"
+            className="bg-foreground px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:opacity-90 disabled:opacity-60"
           >
-            <Pencil className="h-4 w-4" aria-hidden />
             {status === "loading" ? content.form.submitting : content.form.submit}
           </button>
-
-          <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-muted">
-            <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            {content.form.privacy}
-          </p>
         </div>
       </form>
+
+      <p className="border-t border-foreground px-5 py-3 text-center text-[10px] text-muted sm:px-6">
+        {content.form.privacy}
+      </p>
     </section>
   );
 }

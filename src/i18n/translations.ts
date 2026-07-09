@@ -18,9 +18,11 @@ export const content = {
   },
   footer: {
     org: "Tech Workers Guild",
-    tagline: "Protect Jobs. Protect Dignity. Protect Kerala.",
+    tagline: "Stand with Kerala's workers",
   },
   letter: {
+    title: "Official Petition",
+    subtitle: "Demand for Justice for Corro Health Employees",
     to: "To,",
     recipients:
       "The Honourable Chief Minister of Kerala / The Labour Commissioner of Kerala",
@@ -44,7 +46,7 @@ export const content = {
     ],
   },
   form: {
-    support: "I support this petition.",
+    support: "I Support This Petition",
     signatoryDetails: "Signatory Details",
     name: "Name",
     profession: "Profession",
@@ -55,7 +57,7 @@ export const content = {
     mobilePlaceholder: "10-digit mobile number",
     mobileTitle: "Please enter a valid 10-digit mobile number",
     locationPlaceholder: "City / District",
-    submit: "Sign the Petition",
+    submit: "Sign Petition",
     submitting: "Submitting…",
     privacy:
       "Your information will be kept secure and used only for this petition.",
