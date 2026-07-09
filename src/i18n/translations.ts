@@ -54,7 +54,7 @@ export const content = {
     namePlaceholder: "Your full name",
     professionPlaceholder: "Your profession",
     mobilePlaceholder: "10-digit mobile number",
-    mobileTitle: "Please enter a valid 10-digit mobile number",
+    mobileTitle: "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9",
     locationPlaceholder: "City / District",
     submit: "Sign Petition",
     submitting: "Submitting…",
@@ -66,7 +66,7 @@ export const content = {
     signAgain: "Sign again",
     errors: {
       allFields: "All fields are required",
-      invalidMobile: "Please enter a valid 10-digit mobile number",
+      invalidMobile: "Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9",
       saveFailed: "Failed to save signature",
       generic: "Something went wrong",
     },

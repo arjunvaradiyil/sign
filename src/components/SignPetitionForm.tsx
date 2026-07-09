@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { content, type Content } from "@/i18n/translations";
 import { useSignatureCount } from "@/context/SignatureCountProvider";
+import { isValidIndianMobile, normalizeMobile } from "@/lib/validation";
 
 type FormData = {
   name: string;
@@ -27,6 +28,7 @@ function translateError(
     case "All fields are required":
       return errors.allFields;
     case "Please enter a valid 10-digit mobile number":
+    case "Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9":
       return errors.invalidMobile;
     case "Failed to save signature":
       return errors.saveFailed;
@@ -56,7 +58,7 @@ const fields = [
     type: "tel",
     placeholder: content.form.mobilePlaceholder,
     autoComplete: "tel",
-    pattern: "[0-9]{10}",
+    pattern: "[6-9][0-9]{9}",
     title: content.form.mobileTitle,
   },
   {
@@ -75,11 +77,61 @@ export default function SignPetitionForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+
+  function validateForm(data: FormData) {
+    const errors: Partial<Record<keyof FormData, string>> = {};
+
+    if (!data.name.trim() || !data.profession.trim() || !data.mobile.trim() || !data.location.trim()) {
+      if (!data.name.trim()) errors.name = content.form.errors.allFields;
+      if (!data.profession.trim()) errors.profession = content.form.errors.allFields;
+      if (!data.mobile.trim()) errors.mobile = content.form.errors.allFields;
+      if (!data.location.trim()) errors.location = content.form.errors.allFields;
+    }
+
+    if (data.mobile.trim() && !isValidIndianMobile(data.mobile)) {
+      errors.mobile = content.form.errors.invalidMobile;
+    }
+
+    return errors;
+  }
+
+  function handleFieldChange(key: keyof FormData, value: string) {
+    const nextValue = key === "mobile" ? normalizeMobile(value) : value;
+    setForm((current) => ({ ...current, [key]: nextValue }));
+
+    if (fieldErrors[key]) {
+      setFieldErrors((current) => {
+        const next = { ...current };
+        delete next[key];
+        return next;
+      });
+    }
+
+    if (errorMessage) {
+      setErrorMessage("");
+      setStatus("idle");
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("loading");
     setErrorMessage("");
+
+    const errors = validateForm(form);
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setStatus("error");
+      setErrorMessage(
+        errors.mobile && form.mobile.trim()
+          ? content.form.errors.invalidMobile
+          : content.form.errors.allFields
+      );
+      return;
+    }
+
+    setFieldErrors({});
+    setStatus("loading");
 
     try {
       const response = await fetch("/api/signatures", {
@@ -95,6 +147,7 @@ export default function SignPetitionForm() {
       }
 
       setForm(initialForm);
+      setFieldErrors({});
       setStatus("success");
       await refresh();
     } catch (error) {
@@ -163,13 +216,28 @@ export default function SignPetitionForm() {
                 autoComplete={field.autoComplete}
                 pattern={field.pattern}
                 title={field.title}
+                inputMode={field.key === "mobile" ? "numeric" : undefined}
+                maxLength={field.key === "mobile" ? 10 : undefined}
                 value={form[field.key]}
-                onChange={(e) =>
-                  setForm({ ...form, [field.key]: e.target.value })
-                }
-                className="mt-3 w-full border-0 border-b border-foreground bg-transparent py-2 text-sm text-foreground placeholder:text-neutral-400 focus:border-foreground focus:outline-none focus:ring-0"
+                onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                aria-invalid={fieldErrors[field.key] ? true : undefined}
+                aria-describedby={fieldErrors[field.key] ? `${field.key}-error` : undefined}
+                className={`mt-3 w-full border-0 border-b bg-transparent py-2 text-sm text-foreground placeholder:text-neutral-400 focus:outline-none focus:ring-0 ${
+                  fieldErrors[field.key]
+                    ? "border-red-600 focus:border-red-600"
+                    : "border-foreground focus:border-foreground"
+                }`}
                 placeholder={field.placeholder}
               />
+              {fieldErrors[field.key] && (
+                <p
+                  id={`${field.key}-error`}
+                  className="mt-2 text-xs text-red-600"
+                  role="alert"
+                >
+                  {fieldErrors[field.key]}
+                </p>
+              )}
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { countSignatures, insertSignature } from "@/lib/signatures";
+import { isValidIndianMobile, normalizeMobile } from "@/lib/validation";
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,9 +14,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!/^\d{10}$/.test(mobile.trim())) {
+    const normalizedMobile = normalizeMobile(mobile);
+
+    if (!isValidIndianMobile(normalizedMobile)) {
       return NextResponse.json(
-        { error: "Please enter a valid 10-digit mobile number" },
+        { error: "Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9" },
         { status: 400 }
       );
     }
@@ -23,7 +26,7 @@ export async function POST(request: NextRequest) {
     const id = await insertSignature({
       name: name.trim(),
       profession: profession.trim(),
-      mobile: mobile.trim(),
+      mobile: normalizedMobile,
       location: location.trim(),
     });
 
