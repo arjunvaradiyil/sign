@@ -122,11 +122,6 @@ export default function SignPetitionForm() {
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       setStatus("error");
-      setErrorMessage(
-        errors.mobile && form.mobile.trim()
-          ? content.form.errors.invalidMobile
-          : content.form.errors.allFields
-      );
       return;
     }
 
@@ -154,7 +149,15 @@ export default function SignPetitionForm() {
       setStatus("error");
       const message =
         error instanceof Error ? error.message : "Something went wrong";
-      setErrorMessage(translateError(message, content.form.errors));
+      const translated = translateError(message, content.form.errors);
+
+      if (translated === content.form.errors.invalidMobile) {
+        setFieldErrors({ mobile: translated });
+        setErrorMessage("");
+      } else {
+        setFieldErrors({});
+        setErrorMessage(translated);
+      }
     }
   }
 
@@ -242,16 +245,12 @@ export default function SignPetitionForm() {
           ))}
         </div>
 
-        {status === "error" && (
-          <p
-            className="border-t border-foreground px-5 py-3 text-sm font-semibold text-foreground sm:px-6"
-            role="alert"
-          >
-            {errorMessage}
-          </p>
-        )}
-
-        <div className="flex justify-center border-t border-foreground p-5 sm:p-6">
+        <div className="flex flex-col items-center border-t border-foreground p-5 sm:p-6">
+          {errorMessage && (
+            <p className="mb-4 text-sm text-red-600" role="alert">
+              {errorMessage}
+            </p>
+          )}
           <button
             type="submit"
             disabled={status === "loading"}
