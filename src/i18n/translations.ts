@@ -36,8 +36,8 @@ export const content = {
     p2After:
       "is a clear violation of the law of the land and a disgrace to the pro-employee atmosphere of Keralam.",
     p3:
-      "Gtech, the association of IT companies in Keralam, has also condemned the unlawful act of Corro Health and stated: \"Contrary to the company's claim, which comes against the backdrop of its decision to move to Hyderabad, Keralam is the only state in the country that provides IT companies with good infrastructure at an affordable rate. The immense talent pool is a big attraction, and these factors have been playing a major role in companies choosing to set up global capability centres (GCC) in the state.\"",
-    p4: "The absence of strict intervention and uncompromising action will motivate other companies to adopt similar practices. Along with the workers' dignity, this also affects their families' stability. Given these facts, the company's decision to lay off 800 employees without due process is merely a profit-motivated act of arrogance.",
+      "Contrary to Corro Health management's claims, Keralam is the best state in the country for IT companies, offering excellent infrastructure at an affordable cost. Its vast pool of skilled talent is a major attraction, and these advantages have played a significant role in companies choosing to establish their global centres in the state.",
+    p4: "In light of this, the absence of strict intervention and decisive action against Corro Health's alleged illegal practices would encourage other companies to adopt similar practices. Such actions not only undermine the dignity of workers but also threaten the stability and well-being of their families. Given these facts, the company's decision to lay off 800 employees without following due process appears to be a profit-driven act of corporate arrogance.",
     demandsTitle: "We Demand the Following",
     demands: [
       "The State Government must intervene in this matter and take necessary action against Corro Health to ensure that legal procedures are followed before any retrenchment.",
