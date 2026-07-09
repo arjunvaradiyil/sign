@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" fill="none">
+  <rect width="800" height="900" fill="#1a1a1a"/>
+  <ellipse cx="400" cy="920" rx="500" ry="80" fill="#000" opacity="0.5"/>
+  <!-- crowd silhouettes -->
+  <g fill="#0d0d0d">
+    <path d="M120 700 Q130 620 150 580 Q160 540 140 500 L130 480 Q120 460 135 440 L145 420 Q155 400 170 410 L180 430 Q190 450 185 470 L175 500 Q165 540 175 580 L185 700 Z"/>
+    <path d="M200 700 Q210 610 230 560 Q245 520 225 480 L215 450 Q205 420 225 400 L240 385 Q255 375 265 395 L275 420 Q285 450 280 480 L270 520 Q260 560 270 610 L280 700 Z"/>
+    <path d="M310 700 Q320 600 340 550 Q355 500 335 460 L320 430 Q305 400 325 380 L345 365 Q365 355 375 380 L390 410 Q400 440 395 470 L385 510 Q375 560 385 620 L395 700 Z"/>
+    <path d="M420 700 Q430 590 450 540 Q465 490 445 450 L430 420 Q415 390 435 370 L455 355 Q475 345 485 370 L500 400 Q510 430 505 460 L495 500 Q485 550 495 610 L505 700 Z"/>
+    <path d="M530 700 Q540 600 560 550 Q575 500 555 460 L540 430 Q525 400 545 380 L565 365 Q585 355 595 380 L610 410 Q620 440 615 470 L605 510 Q595 560 605 620 L615 700 Z"/>
+    <path d="M640 700 Q650 610 670 560 Q685 520 665 480 L655 450 Q645 420 665 400 L680 385 Q695 375 705 395 L715 420 Q725 450 720 480 L710 520 Q700 560 710 610 L720 700 Z"/>
+    <!-- raised fists -->
+    <circle cx="155" cy="490" r="18" fill="#0d0d0d"/>
+    <circle cx="335" cy="450" r="20" fill="#0d0d0d"/>
+    <circle cx="555" cy="455" r="18" fill="#0d0d0d"/>
+    <circle cx="675" cy="475" r="17" fill="#0d0d0d"/>
+  </g>
+  <!-- protest sign -->
+  <rect x="280" y="320" width="240" height="120" fill="#f5f5f5" stroke="#000" stroke-width="4"/>
+  <text x="400" y="375" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#000">WORKER</text>
+  <text x="400" y="405" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#000">DIGNITY</text>
+  <text x="400" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ff4500">900 LAID OFF</text>
+</svg>
