@@ -1,10 +1,9 @@
 export const content = {
   hero: {
-    title: "Demand for Justice for",
+    org: "Tech Workers Guild",
+    title: "Justice for",
     titleHighlight: "Corro Health Employees",
-    subtitle: "Stand with",
-    subtitleHighlight: "Kerala's",
-    subtitleEnd: "tech workers.",
+    subtitle: "Stand With Keralam's Tech Workers",
     signButton: "Sign the Petition",
   },
   status: {
@@ -18,27 +17,27 @@ export const content = {
   },
   footer: {
     org: "Tech Workers Guild",
-    tagline: "Stand with Kerala's workers",
+    tagline: "Stand With Keralam's Tech Workers",
   },
   letter: {
     title: "Official Petition",
-    subtitle: "Demand for Justice for Corro Health Employees",
+    subtitle: "Justice for Corro Health Employees",
     to: "To,",
     recipients:
-      "The Honourable Chief Minister of Kerala / The Labour Commissioner of Kerala",
+      "The Honourable Chief Minister of Keralam / The Labour Commissioner of Keralam",
     subjectLabel: "Subject:",
     subject:
-      "Demand for intervention against the illegal mass retrenchment by Corro Health.",
+      "Intervention against the illegal mass retrenchment by Corro Health.",
     salutation: "Dear Sir/Madam,",
-    p1: "Kerala is a state where the tech industry has grown considerably well over the last few years. The high quality of human resources and better infrastructure are among the main reasons for this transformation. Kerala is one of the best places in the country to have a labour-friendly atmosphere across all sectors, and any attempt to weaken that character of Kerala will not be accepted by society.",
+    p1: "Keralam is a state where the tech industry has grown considerably well over the last few years. The high quality of human resources and better infrastructure are among the main reasons for this transformation. Keralam is one of the best places in the country to have a labour-friendly atmosphere across all sectors, and any attempt to weaken that character of Keralam will not be accepted by society.",
     p2Before:
       "The recent incident of a mass layoff by the US-based company Corro Health terminating",
-    p2Highlight: "900 employees in a single day without prior intimation",
+    p2Highlight: "800 employees in a single day without prior intimation",
     p2After:
-      "is a clear violation of the law of the land and a disgrace to the pro-employee atmosphere of Kerala.",
+      "is a clear violation of the law of the land and a disgrace to the pro-employee atmosphere of Keralam.",
     p3:
-      "Gtech, the association of IT companies in Kerala, has also condemned the unlawful act of Corro Health and stated: \"Contrary to the company's claim, which comes against the backdrop of its decision to move to Hyderabad, Kerala is the only state in the country that provides IT companies with good infrastructure at an affordable rate. The immense talent pool is a big attraction, and these factors have been playing a major role in companies choosing to set up global capability centres (GCC) in the state.\"",
-    p4: "The absence of strict intervention and uncompromising action will motivate other companies to adopt similar practices. Along with the workers' dignity, this also affects their families' stability. Given these facts, the company's decision to lay off 900 employees without due process is merely a profit-motivated act of arrogance.",
+      "Gtech, the association of IT companies in Keralam, has also condemned the unlawful act of Corro Health and stated: \"Contrary to the company's claim, which comes against the backdrop of its decision to move to Hyderabad, Keralam is the only state in the country that provides IT companies with good infrastructure at an affordable rate. The immense talent pool is a big attraction, and these factors have been playing a major role in companies choosing to set up global capability centres (GCC) in the state.\"",
+    p4: "The absence of strict intervention and uncompromising action will motivate other companies to adopt similar practices. Along with the workers' dignity, this also affects their families' stability. Given these facts, the company's decision to lay off 800 employees without due process is merely a profit-motivated act of arrogance.",
     demandsTitle: "We Demand the Following",
     demands: [
       "The State Government must intervene in this matter and take necessary action against Corro Health to ensure that legal procedures are followed before any retrenchment.",

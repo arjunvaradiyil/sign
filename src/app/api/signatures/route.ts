@@ -28,7 +28,8 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ success: true, id });
-  } catch {
+  } catch (error) {
+    console.error("POST /api/signatures failed:", error);
     return NextResponse.json(
       { error: "Failed to save signature" },
       { status: 500 }
@@ -40,7 +41,8 @@ export async function GET() {
   try {
     const count = await countSignatures();
     return NextResponse.json({ count });
-  } catch {
+  } catch (error) {
+    console.error("GET /api/signatures failed:", error);
     return NextResponse.json(
       { error: "Failed to fetch signature count" },
       { status: 500 }

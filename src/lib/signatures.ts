@@ -11,7 +11,7 @@ export type Signature = {
 const COLLECTION = "signatures";
 
 async function getCollection() {
-  const client = await clientPromise;
+  const client = await clientPromise();
   return client.db(getDatabaseName()).collection<Signature>(COLLECTION);
 }
 

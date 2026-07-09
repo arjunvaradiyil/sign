@@ -16,15 +16,19 @@ export default function PetitionHero() {
       <div className="absolute inset-0 bg-white/80" />
 
       <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl px-4 py-8 text-center sm:px-6 sm:py-10">
-        <h1 className="whitespace-nowrap text-[clamp(0.7rem,2.6vw,2.25rem)] font-extrabold uppercase leading-tight tracking-tight text-foreground">
-          {content.hero.title}{" "}
-          <span className="font-extrabold">{content.hero.titleHighlight}</span>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-foreground">
+          {content.hero.org}
+        </p>
+
+        <h1 className="mt-3 text-[clamp(1rem,3.5vw,2.25rem)] uppercase leading-tight tracking-tight text-foreground">
+          <span className="block font-bold">{content.hero.title}</span>
+          <span className="mt-1 block font-extrabold">
+            {content.hero.titleHighlight}
+          </span>
         </h1>
 
-        <p className="mx-auto mt-3 max-w-lg text-sm text-foreground sm:text-base">
-          {content.hero.subtitle}{" "}
-          <span className="font-semibold">{content.hero.subtitleHighlight}</span>{" "}
-          {content.hero.subtitleEnd}
+        <p className="mx-auto mt-3 text-[clamp(0.625rem,2.8vw,1rem)] font-extrabold leading-tight tracking-wide text-foreground whitespace-nowrap">
+          {content.hero.subtitle}
         </p>
 
         <a

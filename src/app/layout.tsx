@@ -9,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Demand for Justice — Corro Health Employees",
+  title: "Justice for Corro Health Employees",
   description:
-    "Sign the petition demanding government intervention against the illegal mass retrenchment of 900 employees by Corro Health in Kerala.",
+    "Sign the petition demanding government intervention against the illegal mass retrenchment of 800 employees by Corro Health in Keralam.",
   openGraph: {
-    title: "Demand for Justice for Corro Health Employees",
-    description: "Stand with Kerala's tech workers. Sign the petition.",
+    title: "Justice for Corro Health Employees",
+    description: "Stand With Keralam's Tech Workers. Sign the petition.",
     type: "website",
   },
 };

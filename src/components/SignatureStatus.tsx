@@ -34,7 +34,7 @@ export default function SignatureStatus({
   if (loading) {
     return (
       <div
-        className={`border border-foreground bg-background px-3 py-2 text-[11px] uppercase tracking-wider text-muted ${className}`}
+        className={`w-full border border-foreground bg-foreground px-6 py-6 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/80 sm:px-8 sm:py-8 ${className}`}
         aria-live="polite"
       >
         {content.status.loading}
@@ -45,7 +45,7 @@ export default function SignatureStatus({
   if (error || count === null) {
     return (
       <div
-        className={`border border-foreground bg-background px-3 py-2 text-[11px] text-muted ${className}`}
+        className={`w-full border border-foreground bg-foreground px-6 py-6 text-center text-[11px] text-white/80 sm:px-8 sm:py-8 ${className}`}
         role="status"
       >
         {content.status.unavailable}
@@ -56,16 +56,16 @@ export default function SignatureStatus({
   if (variant === "header") {
     return (
       <div
-        className={`border border-foreground bg-background px-3 py-2 text-right leading-tight ${className}`}
+        className={`w-full border border-foreground bg-foreground px-6 py-6 text-center text-white sm:px-8 sm:py-8 ${className}`}
         role="status"
         aria-live="polite"
       >
-        <div className="text-base font-extrabold tabular-nums text-foreground">
+        <p className="text-3xl font-extrabold tabular-nums tracking-tight sm:text-4xl">
           {count.toLocaleString("en-IN")}
-        </div>
-        <div className="text-[10px] uppercase tracking-wide text-muted">
+        </p>
+        <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/80">
           {getHeaderLabel(count)}
-        </div>
+        </p>
       </div>
     );
   }
