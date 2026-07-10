@@ -9,7 +9,6 @@ export type Signature = {
 };
 
 const COLLECTION = "signatures";
-const COUNT_OFFSET = 200;
 
 async function getCollection() {
   const client = await clientPromise();
@@ -29,6 +28,5 @@ export async function insertSignature(
 
 export async function countSignatures(): Promise<number> {
   const collection = await getCollection();
-  const count = await collection.countDocuments();
-  return count + COUNT_OFFSET;
+  return collection.countDocuments();
 }
